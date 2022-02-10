@@ -7,4 +7,5 @@ import java.sql.SQLException;
 public interface CustomerDao {
 
 public Customer createCustomer(Customer customer) throws SQLException;
+public Customer displayCustomer(Customer customer) throws SQLException;
 }

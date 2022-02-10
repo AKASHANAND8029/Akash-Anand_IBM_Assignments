@@ -6,4 +6,5 @@ import java.sql.SQLException;
 
 public interface CustomerService {
     public Customer createCustomer(Customer customer) throws SQLException;
+    public Customer displayCustomer(Customer customer) throws SQLException;
 }

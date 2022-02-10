@@ -16,4 +16,9 @@ public class CustomerServiceImpl implements CustomerService{
     public Customer createCustomer(Customer customer) throws SQLException {
         return customerDao.createCustomer(customer);
     }
+
+    @Override
+    public Customer displayCustomer(Customer customer) throws SQLException {
+        return customerDao.displayCustomer(customer);
+    }
 }

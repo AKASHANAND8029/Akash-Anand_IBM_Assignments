@@ -29,13 +29,20 @@ public class App
     {
         try {
             App app = new App();
-            Scanner scanner = new Scanner(System.in);
+
+            //CREATE A CUSTOMER
+            /*Scanner scanner = new Scanner(System.in);
             System.out.print("Enter Customer name: ");
             String custName = scanner.next();
             System.out.print("Enter Customer email: ");
             String customerMail = scanner.next();
             Customer customer=customerService.createCustomer(new Customer(new Random().nextInt(1000),custName,customerMail));
-            System.out.println("Created a new customer... " + customer);
+            System.out.println("Created a new customer... " + customer);*/
+
+            //DISPLAY ALL CUSTOMER
+            Customer customer=customerService.displayCustomer(new Customer());
+
+
         }
         catch (Exception e)
         {
