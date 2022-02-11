@@ -1,9 +1,6 @@
 package org.example.model;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import javax.persistence.*;
 
@@ -25,12 +22,16 @@ public class Student {
     private String email;
 
     @ElementCollection
-    @OrderColumn
+    //@OrderColumn
     @CollectionTable(name="image", //defaults to student_images
             joinColumns = @JoinColumn(name="student_id"))
-    @Column(name="file_name") //defaults to images
-    private List<String> images = new ArrayList<String>();
-
+    @MapKeyColumn(name="file_name")
+    @Column(name = "image_name")
+    //@Column(name="file_name") //defaults to images
+    //LIST
+    //private List<String> images = new ArrayList<String>();
+    //MAP
+    private Map<String, String> images=new HashMap<String, String>();
 
     public Student(Integer id, String firstName, String lastName, String email) {
         this.id=id;
@@ -76,11 +77,11 @@ public class Student {
     }
 
 
-    public List<String> getImages() {
+    public Map<String,String> getImages() {
         return images;
     }
 
-    public void setImages(List<String> images) {
+    public void setImages(Map<String,String> images) {
         this.images = images;
     }
 

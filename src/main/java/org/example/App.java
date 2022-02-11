@@ -32,11 +32,19 @@ public class App
             System.out.print("Enter Email: ");
             String email=scanner.next();
             Student tempStudent = new Student(new Random().nextInt(1000),firstName,lastName,email);
-            List<String> theImages=  tempStudent.getImages();
+            Map<String, String> theImages=tempStudent.getImages();
+            //List<String> theImages=  tempStudent.getImages();
             //Set<String> theImages = tempStudent.getImages();
+            System.out.print("Enter file name: ");
+            String photoName=scanner.next();
             System.out.print("Enter photo: ");
             String photo=scanner.next();
-            theImages.add(photo+".jpg");
+            //MAP
+            theImages.put(photoName+".jpg",photo);
+//            theImages.put("photo1.jpg","Photo 1");
+//            theImages.put("photo2.jpg","Photo 1");
+//            theImages.put("photo3.jpg","Photo 3");
+            //theImages.add(photo+".jpg");
             //start a transaction
             session.beginTransaction();
             //save the object
@@ -59,6 +67,37 @@ public class App
                 System.out.println(s);
                 list.add(s);
             }session.getTransaction().commit();*/
+
+            //Hibernate mapping list find by name and update email by id
+            /*SessionFactory sessionFactory=null;
+            AnnotationConfigApplicationContext applicationContext=new AnnotationConfigApplicationContext(SpringConfig.class);
+            sessionFactory=applicationContext.getBean("sessionFactory",SessionFactory.class);
+            Session session= sessionFactory.openSession();
+            session.getTransaction().begin();
+            Scanner scanner=new Scanner(System.in);
+            System.out.print("Enter student name: ");
+            String studentName = scanner.next();
+            TypedQuery query= session.createQuery("FROM Student S WHERE S.firstName=:sName ");
+            query.setParameter("sName",studentName);
+            List<Student> studentList=query.getResultList();
+             // update email by id
+            System.out.println("enter id");
+            int id=scanner.nextInt();
+            System.out.println("enter updated email");
+            String email=scanner.next();
+            Student student = session.load(Student.class,id);
+            student.setEmail(email);
+            session.update(student);
+            session.getTransaction().commit();
+            Iterator<Student> iterator= studentList.iterator();
+            while (iterator.hasNext())
+            {
+                System.out.println(iterator.next());
+
+            }*/
+
+
+
                     }
         catch (Exception e)
         {
