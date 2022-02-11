@@ -1,4 +1,4 @@
-package org.example.model;
+/*package org.example.model;
 
 import java.util.*;
 
@@ -90,4 +90,4 @@ public class Student {
         return "Student [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
     }
 
-}
+}*/

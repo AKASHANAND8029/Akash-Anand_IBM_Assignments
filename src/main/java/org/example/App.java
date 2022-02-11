@@ -1,7 +1,9 @@
 package org.example;
 
 import org.example.config.SpringConfig;
-import org.example.model.Student;
+import org.example.model.Employee;
+import org.example.model.EmployeeType;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -21,7 +23,7 @@ public class App
         try {
             //CREATING STUDENTS AND PHOTOS
 
-            Scanner scanner=new Scanner(System.in);
+            /*Scanner scanner=new Scanner(System.in);
             AnnotationConfigApplicationContext applicationContext=new AnnotationConfigApplicationContext(SpringConfig.class);
             SessionFactory sessionFactory=applicationContext.getBean("sessionFactory",SessionFactory.class);
             Session session= sessionFactory.openSession();
@@ -35,15 +37,15 @@ public class App
             Map<String, String> theImages=tempStudent.getImages();
             //List<String> theImages=  tempStudent.getImages();
             //Set<String> theImages = tempStudent.getImages();
-            System.out.print("Enter file name: ");
-            String photoName=scanner.next();
-            System.out.print("Enter photo: ");
-            String photo=scanner.next();
+//            System.out.print("Enter file name: ");
+//            String photoName=scanner.next();
+//            System.out.print("Enter photo: ");
+//            String photo=scanner.next();
             //MAP
-            theImages.put(photoName+".jpg",photo);
-//            theImages.put("photo1.jpg","Photo 1");
-//            theImages.put("photo2.jpg","Photo 1");
-//            theImages.put("photo3.jpg","Photo 3");
+            //theImages.put(photoName+".jpg",photo);
+            theImages.put("photo1.jpg","Photo 1");
+            theImages.put("photo2.jpg","Photo 2");
+            theImages.put("photo3.jpg","Photo 3");
             //theImages.add(photo+".jpg");
             //start a transaction
             session.beginTransaction();
@@ -95,6 +97,27 @@ public class App
                 System.out.println(iterator.next());
 
             }*/
+            AnnotationConfigApplicationContext applicationContext=new AnnotationConfigApplicationContext(SpringConfig.class);
+            SessionFactory sessionFactory=applicationContext.getBean("sessionFactory",SessionFactory.class);
+            Session session= sessionFactory.openSession();
+            session.getTransaction().begin();
+            Employee employee=new Employee(new Random().nextInt(1000),UUID.randomUUID().toString(),"Marry Public",10000.0, EmployeeType.CONTRACT_EMPLOYEE);
+            session.persist(employee);
+            session.getTransaction().commit();
+            System.out.println("saved...");
+            System.out.println(employee);
+            // update email by id
+//            Scanner scanner=new Scanner(System.in);
+//            System.out.println("enter unique id");
+//            String  id=scanner.next();
+//            System.out.println("enter updated salary");
+//            double sal=scanner.nextInt();
+//            Employee employee1=session.load(Employee.class,id);
+//            employee1.setSalary(sal);
+//            session.update(employee1);
+//            System.out.println(employee1);
+//
+//            session.getTransaction().commit();
 
 
 
