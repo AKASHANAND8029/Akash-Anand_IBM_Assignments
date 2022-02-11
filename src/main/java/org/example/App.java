@@ -32,7 +32,8 @@ public class App
             System.out.print("Enter Email: ");
             String email=scanner.next();
             Student tempStudent = new Student(new Random().nextInt(1000),firstName,lastName,email);
-            Set<String> theImages = tempStudent.getImages();
+            List<String> theImages=  tempStudent.getImages();
+            //Set<String> theImages = tempStudent.getImages();
             System.out.print("Enter photo: ");
             String photo=scanner.next();
             theImages.add(photo+".jpg");
