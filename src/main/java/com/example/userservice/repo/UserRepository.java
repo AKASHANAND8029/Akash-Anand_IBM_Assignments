@@ -10,6 +10,9 @@ public interface UserRepository extends CrudRepository<UserEntity,Integer> {
     @Query
     public UserEntity findByUserId(String userId);
     @Query
-    public UserEntity updateByUserId(String userId);
+    public UserEntity findByEmail(String email);
+
+
+
 
 }

@@ -1,7 +1,6 @@
 package com.example.userservice.controller;
 import com.example.userservice.dto.UserDto;
 
-import com.example.userservice.exception.ErrorResponse;
 import com.example.userservice.exception.UserNotFoundException;
 
 import com.example.userservice.service.UserService;
@@ -26,15 +25,7 @@ public class UserController {
         this.modelMapper = modelMapper;
         this.userService = userService;
     }
-    @ExceptionHandler
-    public ResponseEntity<ErrorResponse> handleError(UserNotFoundException e)
-    {
-        ErrorResponse errorResponse=new ErrorResponse();
-        errorResponse.setErrorMessage(e.getMessage());
-        errorResponse.setStatusCode(HttpStatus.NOT_FOUND.value());
-        errorResponse.setErrorReportingTime(System.currentTimeMillis());
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
-    }
+
 
     @PostMapping("/users")
     public ResponseEntity<UserResponseModel> createUser(@RequestBody UserRequestModel userRequestModel)
@@ -65,5 +56,25 @@ public class UserController {
        return ResponseEntity.ok(modelMapper.map(userService.findUserByUserId(userId),UserResponseModel.class));
 
     }
+
+    @DeleteMapping("/users/{userId}")
+    public ResponseEntity<?> deleteUserByUserId(@PathVariable("userId") String userId)
+    {
+        userService.deleteUserByUserId(userId);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+    @PutMapping("/users/userId/{userId}")
+    public ResponseEntity<UserResponseModel> updateUserByUserId(@RequestBody UserRequestModel userRequestModel,@PathVariable("userId") String userId )
+    {  modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+
+        return ResponseEntity.ok(modelMapper.map(userService.updateUserByUserId(userRequestModel,userId),UserResponseModel.class));
+    }
+
+    @PutMapping("/users/email/{email}")
+    public ResponseEntity<UserResponseModel> updateUserByEmail(@RequestBody UserRequestModel userRequestModel,@PathVariable("email") String email)
+    {
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(userService.updateUserByEmail(userRequestModel,email));
+    }
+
 
 }
