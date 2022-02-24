@@ -1,4 +1,4 @@
-/*package org.example.model;
+package org.example.model;
 
 import java.util.*;
 
@@ -12,6 +12,8 @@ public class Student {
 
     private int id;
 
+
+
     @Column(name="first_name")
     private String firstName;
 
@@ -21,28 +23,33 @@ public class Student {
     @Column(name="email")
     private String email;
 
-    @ElementCollection
+    //@ElementCollection
     //@OrderColumn
-    @CollectionTable(name="image", //defaults to student_images
-            joinColumns = @JoinColumn(name="student_id"))
-    @MapKeyColumn(name="file_name")
-    @Column(name = "image_name")
+//    @CollectionTable(name="image", //defaults to student_images
+//            joinColumns = @JoinColumn(name="student_id"))
+//    @MapKeyColumn(name="file_name")
+//    @Column(name = "image_name")
     //@Column(name="file_name") //defaults to images
     //LIST
     //private List<String> images = new ArrayList<String>();
     //MAP
-    private Map<String, String> images=new HashMap<String, String>();
+    //private Map<String, String> images=new HashMap<String, String>();
 
     public Student(Integer id, String firstName, String lastName, String email) {
         this.id=id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+
     }
 
     public Student() {
 
     }
+
+//    public Student(Address studentAddress) {
+//        this.studentAddress = studentAddress;
+//    }
 
     public int getId() {
         return id;
@@ -77,17 +84,25 @@ public class Student {
     }
 
 
-    public Map<String,String> getImages() {
-        return images;
+//    public Map<String,String> getImages() {
+//        return images;
+//    }
+//
+//    public void setImages(Map<String,String> images) {
+//        this.images = images;
+//    }
+    @Embedded
+    private Address studentAddress;
+    public Address getStudentAddress(){
+        return this.studentAddress;
     }
-
-    public void setImages(Map<String,String> images) {
-        this.images = images;
+    public void SetStudentAddress(Address studentAddress){
+        this.studentAddress=studentAddress;
     }
 
     @Override
     public String toString() {
-        return "Student [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
+        return "Student [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", address="+studentAddress+"]";
     }
 
-}*/
+}

@@ -1,8 +1,10 @@
 package org.example;
 
 import org.example.config.SpringConfig;
-import org.example.model.Employee;
-import org.example.model.EmployeeType;
+//import org.example.model.Employee;
+//import org.example.model.EmployeeType;
+import org.example.model.Address;
+import org.example.model.Student;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -23,7 +25,7 @@ public class App
         try {
             //CREATING STUDENTS AND PHOTOS
 
-            /*Scanner scanner=new Scanner(System.in);
+            Scanner scanner=new Scanner(System.in);
             AnnotationConfigApplicationContext applicationContext=new AnnotationConfigApplicationContext(SpringConfig.class);
             SessionFactory sessionFactory=applicationContext.getBean("sessionFactory",SessionFactory.class);
             Session session= sessionFactory.openSession();
@@ -33,8 +35,17 @@ public class App
             String lastName = scanner.next();
             System.out.print("Enter Email: ");
             String email=scanner.next();
+            System.out.print("Enter City: ");
+            String cityName = scanner.next();
+            System.out.print("Enter State: ");
+            String stateName = scanner.next();
+            System.out.print("Enter Street: ");
+            String streetName=scanner.next();
+            System.out.print("Enter Zipcode: ");
+            int zipcode=scanner.nextInt();
+            Address tempAddress=new Address(cityName,stateName,streetName,zipcode);
             Student tempStudent = new Student(new Random().nextInt(1000),firstName,lastName,email);
-            Map<String, String> theImages=tempStudent.getImages();
+            //Map<String, String> theImages=tempStudent.getImages();
             //List<String> theImages=  tempStudent.getImages();
             //Set<String> theImages = tempStudent.getImages();
 //            System.out.print("Enter file name: ");
@@ -43,15 +54,17 @@ public class App
 //            String photo=scanner.next();
             //MAP
             //theImages.put(photoName+".jpg",photo);
-            theImages.put("photo1.jpg","Photo 1");
-            theImages.put("photo2.jpg","Photo 2");
-            theImages.put("photo3.jpg","Photo 3");
+//            theImages.put("photo1.jpg","Photo 1");
+//            theImages.put("photo2.jpg","Photo 2");
+//            theImages.put("photo3.jpg","Photo 3");
             //theImages.add(photo+".jpg");
             //start a transaction
             session.beginTransaction();
             //save the object
             System.out.println("Saving the student and images..");
+            tempStudent.SetStudentAddress(tempAddress);
             session.persist(tempStudent);
+
             //commit the transaction
             session.getTransaction().commit();
             System.out.println("Done!!");
@@ -97,7 +110,10 @@ public class App
                 System.out.println(iterator.next());
 
             }*/
-            AnnotationConfigApplicationContext applicationContext=new AnnotationConfigApplicationContext(SpringConfig.class);
+
+
+            //FOR EMPLOYEE TABLE
+            /*AnnotationConfigApplicationContext applicationContext=new AnnotationConfigApplicationContext(SpringConfig.class);
             SessionFactory sessionFactory=applicationContext.getBean("sessionFactory",SessionFactory.class);
             Session session= sessionFactory.openSession();
             session.getTransaction().begin();
@@ -105,7 +121,7 @@ public class App
             session.persist(employee);
             session.getTransaction().commit();
             System.out.println("saved...");
-            System.out.println(employee);
+            System.out.println(employee);*/
             // update email by id
 //            Scanner scanner=new Scanner(System.in);
 //            System.out.println("enter unique id");
