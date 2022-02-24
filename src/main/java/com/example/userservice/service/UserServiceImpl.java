@@ -123,6 +123,16 @@ public class UserServiceImpl implements UserService{
         userRepository.save(entity);
         return modelMapper.map(entity,UserResponseModel.class);
     }
+    @Override
+    public void deleteUserByEmail(String email) {
+        UserEntity entity=findUserByEmail(email);
+        if (entity==null)
+        {
+            throw new UserNotFoundException("user with email "+email+" not found");
+        }
+
+        userRepository.delete(entity);
+    }
 
     }
 

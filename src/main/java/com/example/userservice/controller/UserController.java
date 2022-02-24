@@ -75,6 +75,12 @@ public class UserController {
     {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(userService.updateUserByEmail(userRequestModel,email));
     }
+    @DeleteMapping("/users/email/{email}")
+    public String deleteUserByEmail(@PathVariable("email") String email)
+    {
+        userService.deleteUserByEmail(email);
+        return "deletion successful";
+    }
 
 
 }

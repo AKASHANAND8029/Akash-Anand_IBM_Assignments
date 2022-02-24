@@ -12,6 +12,6 @@ public interface UserService {
     public UserDto findUserByUserId(String userId);
     public void deleteUserByUserId(String userId);
  UserDto updateUserByUserId(UserRequestModel userRequestModel, String userId);
-
+    public void deleteUserByEmail(String email);
     public UserResponseModel updateUserByEmail(UserRequestModel userRequestModel, String email);
 }
