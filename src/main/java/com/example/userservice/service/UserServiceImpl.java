@@ -68,6 +68,11 @@ public class UserServiceImpl implements UserService{
         UserEntity userEntity= userRepository.findByUserId(userId);
         return userEntity;
     }
+    private UserEntity findFirstName(String firstName) {
+
+        UserEntity userEntity= userRepository.findByFirstName(firstName);
+        return userEntity;
+    }
 
 
     private UserEntity findUserByEmail(String email)
@@ -123,6 +128,18 @@ public class UserServiceImpl implements UserService{
         userRepository.save(entity);
         return modelMapper.map(entity,UserResponseModel.class);
     }
+
+    @Override
+    public UserDto findUserByFirstName(String firstName) {
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+        UserEntity userEntity= findFirstName(firstName);
+        if(userEntity==null)
+        {
+            throw new UserNotFoundException("user with name: "+firstName+" not found");
+        }
+        return modelMapper.map(userEntity,UserDto.class);
+    }
+
     @Override
     public void deleteUserByEmail(String email) {
         UserEntity entity=findUserByEmail(email);

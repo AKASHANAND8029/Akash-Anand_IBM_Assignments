@@ -56,6 +56,14 @@ public class UserController {
        return ResponseEntity.ok(modelMapper.map(userService.findUserByUserId(userId),UserResponseModel.class));
 
     }
+    @GetMapping("/users/firstName/{firstName}")
+    public ResponseEntity<UserResponseModel> findUserByFirstName(@PathVariable("firstName") String firstName)
+    {
+        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+
+        return ResponseEntity.ok(modelMapper.map(userService.findUserByFirstName(firstName),UserResponseModel.class));
+
+    }
 
     @DeleteMapping("/users/{userId}")
     public ResponseEntity<?> deleteUserByUserId(@PathVariable("userId") String userId)
