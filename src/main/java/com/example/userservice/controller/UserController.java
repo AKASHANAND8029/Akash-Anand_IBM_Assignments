@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 @RestController
+@RequestMapping("/users")
 public class UserController {
 
     private final ModelMapper modelMapper;
@@ -27,7 +28,7 @@ public class UserController {
     }
 
 
-    @PostMapping("/users")
+    @PostMapping("/")
     public ResponseEntity<UserResponseModel> createUser(@RequestBody UserRequestModel userRequestModel)
     {
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
@@ -36,7 +37,7 @@ public class UserController {
         userDto=userService.createUser(userDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(modelMapper.map(userDto,UserResponseModel.class));
     }
-    @GetMapping("/users")
+    @GetMapping("/")
     public ResponseEntity<List<UserResponseModel>> getUsers()
     {
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
@@ -48,7 +49,7 @@ public class UserController {
         }
         return ResponseEntity.ok(list);
     }
-    @GetMapping("/users/{userId}")
+    @GetMapping("/{userId}")
     public ResponseEntity<UserResponseModel> findUserByUserId(@PathVariable("userId") String userId)
     {
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
@@ -56,7 +57,7 @@ public class UserController {
        return ResponseEntity.ok(modelMapper.map(userService.findUserByUserId(userId),UserResponseModel.class));
 
     }
-    @GetMapping("/users/firstName/{firstName}")
+    @GetMapping("/firstName/{firstName}")
     public ResponseEntity<UserResponseModel> findUserByFirstName(@PathVariable("firstName") String firstName)
     {
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
@@ -65,25 +66,25 @@ public class UserController {
 
     }
 
-    @DeleteMapping("/users/{userId}")
+    @DeleteMapping("/{userId}")
     public ResponseEntity<?> deleteUserByUserId(@PathVariable("userId") String userId)
     {
         userService.deleteUserByUserId(userId);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
-    @PutMapping("/users/userId/{userId}")
+    @PutMapping("/userId/{userId}")
     public ResponseEntity<UserResponseModel> updateUserByUserId(@RequestBody UserRequestModel userRequestModel,@PathVariable("userId") String userId )
     {  modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
         return ResponseEntity.ok(modelMapper.map(userService.updateUserByUserId(userRequestModel,userId),UserResponseModel.class));
     }
 
-    @PutMapping("/users/email/{email}")
+    @PutMapping("/email/{email}")
     public ResponseEntity<UserResponseModel> updateUserByEmail(@RequestBody UserRequestModel userRequestModel,@PathVariable("email") String email)
     {
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(userService.updateUserByEmail(userRequestModel,email));
     }
-    @DeleteMapping("/users/email/{email}")
+    @DeleteMapping("/email/{email}")
     public String deleteUserByEmail(@PathVariable("email") String email)
     {
         userService.deleteUserByEmail(email);
