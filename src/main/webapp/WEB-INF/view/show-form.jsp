@@ -17,7 +17,7 @@
      <div class="mb-3">
          <label class="form-label" for="t3">Season</label>
          <select name="lSeason" id="t3">
-             <option value="Unknown">Select...</option>
+             <option value="Unknown">Select Season...</option>
              <option value="Winter">Winter</option>
              <option value="Autumn">Autumn</option>
              <option value="Summer">Summer</option>

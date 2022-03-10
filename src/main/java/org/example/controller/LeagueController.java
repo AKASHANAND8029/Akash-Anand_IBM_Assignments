@@ -24,4 +24,5 @@ public class LeagueController {
 
         return "process-form";
     }
+
 }

@@ -14,7 +14,4 @@ import lombok.*;
         private Integer leagueYear;
         private String leagueSeason;
 
-
-
-
     }

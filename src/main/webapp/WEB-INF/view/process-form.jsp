@@ -8,6 +8,6 @@
 League: ${LEAGUE.leagueName}<br/>
 Year: ${LEAGUE.leagueYear}
 Season: ${LEAGUE.leagueSeason}
-" " Thanks :)
+
 </body>
 </html>
